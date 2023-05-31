@@ -146,7 +146,7 @@ async def change_status(id, status):
     query = (
         (stages_table.update().values(
             status = status
-        ).where(stages_table.c.object_id==id)).returning(
+        ).where(stages_table.c.id==id)).returning(
             stages_table.c.stage,
             stages_table.c.status
         )
