@@ -1,3 +1,5 @@
+import http
+
 from fastapi import APIRouter
 from app.schemas import objects
 from app.utils import objects as objects_utils
@@ -20,3 +22,12 @@ async def get_objects():
 @router.post("/get-stages", response_model=objects.Stages)
 async def get_stages(query: objects.StagesQuery):
     return await objects_utils.get_stages(query)
+
+@router.put("/change-status", response_model=objects.Stage)
+async def change_status(id: int, status: str):
+    return await objects_utils.change_status(id, status)
+
+@router.delete("/delete-stage")
+async def delete_stage(id: int):
+    await objects_utils.delete_stage(id)
+    return f'stage with id {id} is deleted'

@@ -12,9 +12,9 @@ class Image(BaseModel):
     img_url: str
 class ObjectCreate(BaseModel):
     title: str
-    address: str
-    img_url: List[Image]
-    phone_number: str
+    address: Optional[str]
+    img_url: Optional[List[Image]]
+    phone_number: Optional[str]
     description: str
     stages: List[Stage]
     materials: List[Material]

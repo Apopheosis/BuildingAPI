@@ -142,3 +142,20 @@ async def get_stages(stage_query: objects_schema.StagesQuery):
         stages_list.append(dict(zip(stage, stage.values())))
     return {'stages': stages_list}
 
+async def change_status(id, status):
+    query = (
+        (stages_table.update().values(
+            status = status
+        ).where(stages_table.c.object_id==id)).returning(
+            stages_table.c.stage,
+            stages_table.c.status
+        )
+    )
+    result = await database.fetch_one(query)
+    result = dict(zip(result, result.values()))
+    return result
+
+async def delete_stage(id):
+    query = (stages_table.delete().where(stages_table.c.id == id))
+    await database.execute(query)
+
