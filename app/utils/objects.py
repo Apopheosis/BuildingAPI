@@ -128,13 +128,13 @@ async def get_objects():
     print(results_list)
     return {'entries': results_list}
 
-async def get_stages(stage_query: objects_schema.StagesQuery):
+async def get_stages(object_id, status):
     query = (select(
         stages_table.c.stage,
         stages_table.c.status
     ).select_from(stages_table.join(objects_table)).where(and_(
-        objects_table.c.id == stage_query.object_id,
-        stages_table.c.status == stage_query.status
+        objects_table.c.id == object_id,
+        stages_table.c.status == status
     )))
     stages = await database.fetch_all(query)
     stages_list = []
