@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 class Stage(BaseModel):
-    id: int
+    id: Optional[int]
     stage: str
     status: Optional[str]
 
@@ -17,7 +17,7 @@ class ObjectCreate(BaseModel):
     img_url: Optional[List[Image]]
     phone_number: Optional[str]
     description: str
-    stages: Optional[List[Stage]]
+    stages: List[Stage]
     materials: List[Material]
 
 class ObjectEntry(BaseModel):
