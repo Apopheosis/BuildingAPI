@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 class Stage(BaseModel):
+    id: int
     stage: str
     status: Optional[str]
 

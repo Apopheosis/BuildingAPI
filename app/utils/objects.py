@@ -130,6 +130,7 @@ async def get_objects():
 
 async def get_stages(object_id, status):
     query = (select(
+        stages_table.c.id,
         stages_table.c.stage,
         stages_table.c.status
     ).select_from(stages_table.join(objects_table)).where(and_(
