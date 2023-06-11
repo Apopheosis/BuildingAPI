@@ -17,7 +17,7 @@ class ObjectCreate(BaseModel):
     img_url: Optional[List[Image]]
     phone_number: Optional[str]
     description: str
-    stages: List[Stage]
+    stages: Optional[List[Stage]]
     materials: List[Material]
 
 class ObjectEntry(BaseModel):
